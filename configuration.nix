@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -26,7 +27,7 @@
 
   #Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
 
@@ -49,24 +50,24 @@
   services.xserver = {
     layout = "pt";
     xkbVariant = "";
-    
+
     enable = true;
-    
+
     desktopManager = {
-        xterm.enable = false;
+      xterm.enable = false;
     };
 
     displayManager = {
-	defaultSession = "none+i3";
+      defaultSession = "none+i3";
     };
 
     windowManager.i3 = {
-	enable = true;
-	extraPackages = with pkgs; [
-	   dmenu
-	   i3status
-	   i3blocks
-	];
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3blocks
+      ];
     };
   };
 
@@ -78,7 +79,7 @@
     isNormalUser = true;
     description = "Pereira";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -87,13 +88,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     firefox
     git
     i3lock-fancy
     feh
-    alacritty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
