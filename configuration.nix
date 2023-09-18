@@ -15,6 +15,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+#GIRAO :)
+boot.initrd.kernelModules = [ "amdgpu" ];
+
   networking.hostName = "prohmakas"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -51,6 +54,8 @@
     layout = "pt";
     xkbVariant = "";
 
+    #GIRAO :)
+videoDrivers = [ "amdgpu"];
     enable = true;
 
     desktopManager = {
