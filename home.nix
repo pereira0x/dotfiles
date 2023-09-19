@@ -49,7 +49,7 @@
       plugins = [ "git" ];
       theme = "robbyrussell";
     };
-    
+
   };
 
   # Packages that should be installed to the user profile.
@@ -57,6 +57,7 @@
     # here is some command line tools I use frequently
     # feel free to add your own or remove some of them
     polybar
+    brave
     flameshot
     cava
     cmatrix
