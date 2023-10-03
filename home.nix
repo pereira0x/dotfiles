@@ -25,9 +25,18 @@
       iftop # network monitoring
       bat # A cat clone with wings.
       tldr # man pages with practical examples
-
+      neovim # text editor
+      killall # kill processes by name
+      xfce.thunar # file manager
+      rofi # window switcher, application launcher and dmenu replacement
+      pywal # color scheme generator
+      calc # arbitrary precision calculator
+      networkmanager_dmenu # network manager
+      nerdfonts 
     ];
   };
+
+  
 
   programs = {
     git = {
@@ -44,10 +53,7 @@
     zsh = {
       enable = true;
       shellAliases = {
-        e = "exa";
-        ea = "exa -a";
-        el = "exa -l";
-        ew = "exa -al";
+        ls = "exa";
         update = "sudo nixos-rebuild switch";
       };
       oh-my-zsh = {
