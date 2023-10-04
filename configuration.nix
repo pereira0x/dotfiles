@@ -49,6 +49,8 @@
     LC_TIME = "pt_PT.UTF-8";
   };
 
+  hardware.pulseaudio.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     layout = "pt";
@@ -83,7 +85,7 @@
   users.users.pereira = {
     isNormalUser = true;
     description = "Pereira";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
     packages = with pkgs; [ ];
   };
 

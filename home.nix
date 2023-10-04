@@ -33,12 +33,18 @@
       calc # arbitrary precision calculator
       networkmanager_dmenu # network manager
       nerdfonts 
+      spotify
     ];
   };
 
   
 
   programs = {
+    zoxide = {
+	enable = true;
+	enableZshIntegration = true;
+    };
+
     git = {
       enable = true;
       userName = "José Pereira";
@@ -55,6 +61,7 @@
       shellAliases = {
         ls = "exa";
         update = "sudo nixos-rebuild switch";
+	      cd = "z";
       };
       oh-my-zsh = {
         enable = true;
