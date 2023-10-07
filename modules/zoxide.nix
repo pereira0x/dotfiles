@@ -5,6 +5,6 @@
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.zoxide = {
     enable = true;
-      enableZshIntegration = true;
+    enableZshIntegration = true;
   };
 }

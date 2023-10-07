@@ -13,6 +13,7 @@
     opacityRules = [
       "100:class_g = 'Alacritty' && focused"
       "50:class_g = 'Alacritty' && !focused"
+      "100:class_g = 'Rofi'"
     ];
     settings = {
       blur = {

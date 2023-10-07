@@ -7,7 +7,7 @@
 
     settings = {
       format = "$username[@](bold green)$hostname$directory$all";
-      
+
 
       username = {
         show_always = true;
