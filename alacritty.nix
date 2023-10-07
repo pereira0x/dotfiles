@@ -19,4 +19,4 @@
       shell.program = "${pkgs.zsh}/bin/zsh";
     };
   };
-};
+}
