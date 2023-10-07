@@ -32,17 +32,21 @@
       pywal # color scheme generator
       calc # arbitrary precision calculator
       networkmanager_dmenu # network manager
-      nerdfonts 
+      nerdfonts
       spotify
+      wget
     ];
   };
 
-  
+  imports = [
+    ./starship.nix
+    ./alacritty.nix
+  ];
 
   programs = {
     zoxide = {
-	enable = true;
-	enableZshIntegration = true;
+      enable = true;
+      enableZshIntegration = true;
     };
 
     git = {
@@ -61,36 +65,12 @@
       shellAliases = {
         ls = "exa";
         update = "sudo nixos-rebuild switch";
-	      cd = "z";
+        cd = "z";
       };
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" ];
         theme = "robbyrussell";
-      };
-    };
-
-
-    # starship - an customizable prompt for any shell
-    starship = {
-      enable = true;
-      settings = {
-        # add_newline = false;
-      };
-    };
-
-    # alacritty - a cross-platform, GPU-accelerated terminal emulator
-    alacritty = {
-      enable = true;
-      settings = {
-        env.TERM = "xterm-256color";
-        font = {
-          size = 12;
-          draw_bold_text_with_bright_colors = true;
-        };
-        scrolling.multiplier = 5;
-        selection.save_to_clipboard = true;
-        shell.program = "${pkgs.zsh}/bin/zsh";
       };
     };
   };
