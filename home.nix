@@ -35,45 +35,13 @@
       nerdfonts
       spotify
       wget
+      picom
     ];
   };
 
   imports = [
-    ./starship.nix
-    ./alacritty.nix
+    ./modules
   ];
-
-  programs = {
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    git = {
-      enable = true;
-      userName = "José Pereira";
-      userEmail = "jose.pereira@rnl.tecnico.ulisboa.pt";
-      extraConfig = {
-        color.ui = true;
-        pull.rebase = true;
-        init.defaultBranch = "main";
-      };
-    };
-
-    zsh = {
-      enable = true;
-      shellAliases = {
-        ls = "exa";
-        update = "sudo nixos-rebuild switch";
-        cd = "z";
-      };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" ];
-        theme = "robbyrussell";
-      };
-    };
-  };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
