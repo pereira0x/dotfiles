@@ -5,14 +5,32 @@
     username = "pereira";
     homeDirectory = "/home/pereira";
     packages = with pkgs; [
-      polybar # status bar
+      # Applications
+      spotify # music player
       brave # browser
-      flameshot # screenshot tool
-      cava # audio visualizer
-      gotop # system monitor
-      vscode # code editor
-      nixpkgs-fmt # nix formatter
-      neofetch # system info
+      wine # windows emulator
+
+      # system
+      pywal # color scheme generator
+      rofi # window switcher, application launcher and dmenu replacement
+      rofi-calc # calculator
+      networkmanager_dmenu # network manager
+      xfce.thunar # file manager
+      picom # compositor
+      libnotify # notification library
+      nerdfonts # fonts
+      polybar # status bar
+
+      # cyber security
+      nmap # network scanner
+      wireshark # network protocol analyzer
+      sqlmap # sql injection
+      metasploit # exploit framework
+      burpsuite # web vulnerability scanner
+
+      # utilities
+      wget # download files
+      zathura # document viewer
       ranger # terminal file manager
       zip # compression and file packaging
       unzip # decompression
@@ -26,25 +44,15 @@
       bat # A cat clone with wings.
       tldr # man pages with practical examples
       killall # kill processes by name
-      xfce.thunar # file manager
-      rofi # window switcher, application launcher and dmenu replacement
-      pywal # color scheme generator
-      calc # arbitrary precision calculator
-      networkmanager_dmenu # network manager
-      nerdfonts # fonts
-      spotify # music player
-      wget # download files
-      picom # compositor
-      zathura # document viewer
-      wine # windows emulator
+      flameshot # screenshot tool
+      cava # audio visualizer
+      gotop # system monitor
+      neofetch # system info
 
-      # cyber security
-      nmap # network scanner
-      wireshark # network protocol analyzer
-      sqlmap # sql injection
-      metasploit # exploit framework
-      burpsuite # web vulnerability scanner
-      libnotify # notification library
+      # development
+      vscode # code editor
+      nixpkgs-fmt # nix formatter
+
 
     ];
   };
