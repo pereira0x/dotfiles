@@ -25,17 +25,27 @@
       iftop # network monitoring
       bat # A cat clone with wings.
       tldr # man pages with practical examples
-      neovim # text editor
       killall # kill processes by name
       xfce.thunar # file manager
       rofi # window switcher, application launcher and dmenu replacement
       pywal # color scheme generator
       calc # arbitrary precision calculator
       networkmanager_dmenu # network manager
-      nerdfonts
-      spotify
-      wget
-      picom
+      nerdfonts # fonts
+      spotify # music player
+      wget # download files
+      picom # compositor
+      zathura # document viewer
+      wine # windows emulator
+
+      # cyber security
+      nmap # network scanner
+      wireshark # network protocol analyzer
+      sqlmap # sql injection
+      metasploit # exploit framework
+      burpsuite # web vulnerability scanner
+      libnotify # notification library
+
     ];
   };
 

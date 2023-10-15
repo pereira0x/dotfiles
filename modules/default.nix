@@ -8,5 +8,7 @@
     ./zsh.nix
     ./zoxide.nix
     ./picom.nix
+    ./neovim.nix
+    ./dunst.nix
   ];
 }

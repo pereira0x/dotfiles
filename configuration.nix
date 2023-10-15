@@ -52,30 +52,33 @@
   hardware.pulseaudio.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "pt";
-    xkbVariant = "";
+  services = {
+    xserver = {
+      layout = "pt";
+      xkbVariant = "";
 
-    #GIRAO :)
-    videoDrivers = [ "amdgpu" ];
-    enable = true;
-
-    desktopManager = {
-      xterm.enable = false;
-    };
-
-    displayManager = {
-      defaultSession = "none+i3";
-    };
-
-    windowManager.i3 = {
+      #GIRAO :)
+      videoDrivers = [ "amdgpu" ];
       enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3status
-        i3blocks
-      ];
+
+      desktopManager = {
+        xterm.enable = false;
+      };
+
+      displayManager = {
+        defaultSession = "none+i3";
+      };
+
+      windowManager.i3 = {
+        enable = true;
+        extraPackages = with pkgs; [
+          dmenu
+          i3status
+          i3blocks
+        ];
+      };
     };
+    gnome.gnome-keyring.enable = true;
   };
 
   # Configure console keymap
@@ -85,7 +88,7 @@
   users.users.pereira = {
     isNormalUser = true;
     description = "Pereira";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
     packages = with pkgs; [ ];
   };
 

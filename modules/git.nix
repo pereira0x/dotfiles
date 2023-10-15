@@ -9,6 +9,10 @@
       color.ui = true;
       pull.rebase = true;
       init.defaultBranch = "main";
+      core.editor = "nvim";
+    };
+    diff-so-fancy = {
+      enable = true;
     };
   };
 }

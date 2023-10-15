@@ -9,6 +9,7 @@
       ls = "exa";
       update = "sudo nixos-rebuild switch";
       cd = "z";
+      ":q" = "exit";
     };
     oh-my-zsh = {
       enable = true;
