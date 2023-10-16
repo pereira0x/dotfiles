@@ -52,7 +52,8 @@
       # development
       vscode # code editor
       nixpkgs-fmt # nix formatter
-
+      python3 # programming language
+      wkhtmltopdf # html to pdf (PhDMS)
 
     ];
   };

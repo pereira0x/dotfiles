@@ -51,8 +51,21 @@
 
   hardware.pulseaudio.enable = true;
 
-  # Configure keymap in X11
+  # Needed for wkhtmltopdf
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebkit-5.212.0-alpha4"
+  ];
+
   services = {
+    mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
+
+    postgresql = {
+      enable = true;
+    };
+
     xserver = {
       layout = "pt";
       xkbVariant = "";
