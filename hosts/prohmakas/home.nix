@@ -59,7 +59,7 @@
   };
 
   imports = [
-    ./modules
+    ../../modules
   ];
 
   # This value determines the home Manager release that your

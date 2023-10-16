@@ -14,7 +14,7 @@
       prohmakas = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./hosts/prohmakas/configuration.nix
 
           ({ config, pkgs, ... }: {
             # install the overlay
@@ -30,7 +30,7 @@
             home-manager.useUserPackages = true;
 
             # TODO replace ryan with your own username
-            home-manager.users.pereira = import ./home.nix;
+            home-manager.users.pereira = import ./hosts/prohmakas/home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
