@@ -54,6 +54,9 @@
       nixpkgs-fmt # nix formatter
       python3 # programming language
       wkhtmltopdf # html to pdf (PhDMS)
+      rustup # rust programming language
+      gcc # c compiler
+      mdbook # create book from markdown
 
     ];
   };

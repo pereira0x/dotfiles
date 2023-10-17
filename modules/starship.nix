@@ -8,7 +8,6 @@
     settings = {
       format = "$username[@](bold green)$hostname$directory$all";
 
-
       username = {
         show_always = true;
         format = "[\\[](bold bright-red)[$user]($style)";

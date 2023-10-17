@@ -55,7 +55,5 @@
         icon = "dialog-error";
       };
     };
-
-
   };
 }
