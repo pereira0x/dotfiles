@@ -48,6 +48,7 @@
       cava # audio visualizer
       gotop # system monitor
       neofetch # system info
+      openssl # cryptography toolkit
 
       # development
       vscode # code editor
@@ -57,6 +58,8 @@
       rustup # rust programming language
       gcc # c compiler
       mdbook # create book from markdown
+      deadnix
+      statix
 
     ];
   };
