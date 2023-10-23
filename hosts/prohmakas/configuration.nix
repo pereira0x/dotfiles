@@ -4,12 +4,22 @@
 
 { config, pkgs, ... }:
 
+let
+  RNLCert = builtins.fetchurl {
+    url = "https://rnl.tecnico.ulisboa.pt/ca/cacert/cacert.pem";
+    sha256 = "1jiqx6s86hlmpp8k2172ki6b2ayhr1hyr5g2d5vzs41rnva8bl63";
+  };
+in
+
 {
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  # Add certificates
+  security.pki.certificateFiles = ["${RNLCert}"];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

@@ -5,7 +5,7 @@
     enable = true;
     shellAliases = {
       ls = "exa";
-      update = "sudo nixos-rebuild switch";
+      u = "sudo nixos-rebuild switch";
       cd = "z";
       ":q" = "exit";
     };

@@ -27,6 +27,11 @@
       sqlmap # sql injection
       metasploit # exploit framework
       burpsuite # web vulnerability scanner
+      gdb # debugger
+      ghidra-bin # reverse engineering
+      stegsolve # steganography
+      ltrace # library call tracer
+      zsteg # steganography
 
       # utilities
       wget # download files
@@ -49,6 +54,8 @@
       gotop # system monitor
       neofetch # system info
       openssl # cryptography toolkit
+      lxappearance # gtk theme switcher
+      calcurse # calendar and scheduling
 
       # development
       vscode # code editor
