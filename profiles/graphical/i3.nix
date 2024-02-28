@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, config, lib, ... }:
 let
-  wallpaperPath = "~/nixos-config/wallpapers/wp1.png";
+  wallpaperPath = "${config.home.homeDirectory}/nixos-config/wallpapers/wp1.png";
 in
 {
   xsession.windowManager.i3 = {
@@ -24,6 +24,8 @@ in
       keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "${modifier}+b" = "exec ${pkgs.brave}/bin/brave";
+        # flameshot on PrintScreen
+        "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
       };
 
       startup = [
