@@ -117,6 +117,7 @@
       git
       wget
       curl
+      steam-run
     ];
 
     home-manager.users.pereira = { pkgs, ... }: {
@@ -131,7 +132,7 @@
         shell.starship
         git
         graphical.feh
-        eza
+        shell.eza
       ];
     };
 
