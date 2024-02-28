@@ -41,7 +41,7 @@
               modules = [
                 { networking.hostName = name; }
                 { nixpkgs.config.allowUnfree = true; }
-                profiles.sshd
+                profiles.core.sshd
                 inputs.home.nixosModules.home-manager
                 { home-manager = { useGlobalPkgs = true; }; }
               ] ++ (mkModules "${dir}/${name}");
