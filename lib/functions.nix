@@ -41,18 +41,15 @@ let
 
       collect = file: type: {
         name = lib.removeSuffix ".nix" file;
-        value =
-          let path = dirPath + "/${file}";
-          in if (type == "regular") || (type == "directory"
-            && builtins.pathExists (path + "/default.nix")) then
-            path
+        value = let path = dirPath + "/${file}";
+        in if (type == "regular") || (type == "directory"
+          && builtins.pathExists (path + "/default.nix")) then
+          path
           # recurse on directories that don't contain a `default.nix`
-          else
-            rakeLeaves path;
+        else
+          rakeLeaves path;
       };
 
       files = lib.filterAttrs seive (builtins.readDir dirPath);
-    in
-    lib.filterAttrs (n: v: v != { }) (lib.mapAttrs' collect files);
-in
-{ inherit rakeLeaves; }
+    in lib.filterAttrs (n: v: v != { }) (lib.mapAttrs' collect files);
+in { inherit rakeLeaves; }

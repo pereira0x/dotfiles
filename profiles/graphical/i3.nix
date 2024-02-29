@@ -1,8 +1,8 @@
 { pkgs, config, lib, ... }:
 let
-  wallpaperPath = "${config.home.homeDirectory}/nixos-config/wallpapers/wp1.png";
-in
-{
+  wallpaperPath =
+    "${config.home.homeDirectory}/nixos-config/wallpapers/wp1.png";
+in {
   xsession.windowManager.i3 = {
     enable = true;
 
@@ -24,8 +24,8 @@ in
       keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "${modifier}+b" = "exec ${pkgs.brave}/bin/brave";
-        # flameshot on PrintScreen
         "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
+        "${modifier}+l" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy";
       };
 
       startup = [

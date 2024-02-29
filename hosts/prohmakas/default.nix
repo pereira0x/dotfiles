@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, profiles, ... }:
+{ config, pkgs, lib, profiles, inputs, ... }:
 
 {
   # Bootloader.
@@ -76,23 +76,18 @@
     extraGroups = [ "networkmanager" "wheel" ];
 
     # List of packages installed in the user environment
-    packages = with pkgs; [
-      firefox
-      brave
-      spotify
-      vscode
-      nixfmt
-      nixpkgs-fmt
-    ];
+    # packages with pkgs and
+    packages = with pkgs; [ firefox brave spotify vscode i3lock-fancy ];
   };
 
   # List of packages installed in system profile.
   environment.systemPackages = with pkgs; [
     vim
-    git
     wget
     curl
     steam-run
+    nixfmt
+    nixpkgs-fmt
   ];
 
   home-manager.users.pereira = { pkgs, ... }: {
@@ -101,22 +96,25 @@
     home.stateVersion = "23.11";
 
     # Profiles to import, available in the user's context.
-    imports = with profiles; [
-      # core
-      core.git
+    imports = with profiles;
+      [
+        # core
+        core.git
 
-      # shell
-      shell.zsh
-      shell.alacritty
-      shell.zoxide
-      shell.starship
-      shell.eza
+        # shell
+        shell.zsh
+        shell.alacritty
+        shell.zoxide
+        shell.starship
+        shell.eza
 
-      # graphical
-      graphical.feh
-      graphical.i3
-      graphical.flameshot
-    ];
+        # graphical
+        graphical.feh
+        graphical.i3
+        graphical.flameshot
+
+        nixvim
+      ] ++ [ inputs.nixvim.homeManagerModules.nixvim ];
   };
 
   # This value determines the NixOS release from which the default
