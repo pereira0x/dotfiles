@@ -42,6 +42,8 @@
     enable = true;
     layout = "pt";
     xkbVariant = "";
+    displayManager.defaultSession = "none+i3";
+    windowManager.i3 = { enable = true; };
   };
 
   # Configure console keymap
@@ -49,6 +51,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  virtualisation.docker.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -67,17 +71,29 @@
   # services.xserver.libinput.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [ "openssl-1.1.1w" ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pereira = {
     isNormalUser = true;
     description = "pereira";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
 
     # List of packages installed in the user environment
     # packages with pkgs and
-    packages = with pkgs; [ firefox brave spotify vscode i3lock-fancy ];
+    packages = with pkgs; [
+      firefox
+      brave
+      spotify
+      vscode
+      i3lock-fancy
+      discord
+      docker-compose
+      mysql80
+    ];
   };
 
   # List of packages installed in system profile.
@@ -88,6 +104,9 @@
     steam-run
     nixfmt
     nixpkgs-fmt
+    python3
+    dconf
+    tldr
   ];
 
   home-manager.users.pereira = { pkgs, ... }: {
@@ -112,6 +131,7 @@
         graphical.feh
         graphical.i3
         graphical.flameshot
+        graphical.gtk
 
         nixvim
       ] ++ [ inputs.nixvim.homeManagerModules.nixvim ];
