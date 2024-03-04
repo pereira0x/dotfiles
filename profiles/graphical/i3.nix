@@ -1,7 +1,8 @@
 { pkgs, config, lib, ... }:
 let
-  wallpaperPath =
-    "${config.home.homeDirectory}/nixos-config/wallpapers/wp1.png";
+  wallpapersDir = "${config.home.homeDirectory}/nixos-config/wallpapers/";
+  wallpaper = "wp2.jpg";
+  wallpaperPath = "${wallpapersDir}${wallpaper}";
 in {
   xsession.windowManager.i3 = {
     enable = true;
