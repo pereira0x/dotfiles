@@ -15,7 +15,7 @@ in {
         titlebar = false;
       };
 
-      workspaceAutoBackAndForth = true;
+      workspaceAutoBackAndForth = false;
 
       gaps = {
         inner = 15;
@@ -26,7 +26,7 @@ in {
         "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "${modifier}+b" = "exec ${pkgs.brave}/bin/brave";
         "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
-        "${modifier}+l" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+        "${modifier}+x" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy";
       };
 
       startup = [

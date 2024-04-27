@@ -36,21 +36,18 @@
 
       # Imports every host defined in a directory.
       mkHosts = dir:
-        listToAttrs (map
-          (name: {
-            inherit name;
-            value = inputs.nixpkgs.lib.nixosSystem {
-              specialArgs = { inherit inputs profiles sshKeys; };
-              modules = [
-                { networking.hostName = name; }
-                { nixpkgs.config.allowUnfree = true; }
-                profiles.core.sshd
-                inputs.home.nixosModules.home-manager
-                { home-manager = { useGlobalPkgs = true; }; }
-              ] ++ (mkModules "${dir}/${name}");
-            };
-          })
-          (attrNames (readDir dir)));
-    in
-    { nixosConfigurations = mkHosts ./hosts; };
+        listToAttrs (map (name: {
+          inherit name;
+          value = inputs.nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs profiles sshKeys; };
+            modules = [
+              { networking.hostName = name; }
+              { nixpkgs.config.allowUnfree = true; }
+              profiles.core.sshd
+              inputs.home.nixosModules.home-manager
+              { home-manager = { useGlobalPkgs = true; }; }
+            ] ++ (mkModules "${dir}/${name}");
+          };
+        }) (attrNames (readDir dir)));
+    in { nixosConfigurations = mkHosts ./hosts; };
 }

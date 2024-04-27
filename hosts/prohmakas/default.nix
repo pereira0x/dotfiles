@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, profiles, inputs, ... }:
+{ pkgs, profiles, inputs, ... }:
 
 {
   # Bootloader.
@@ -36,6 +36,8 @@
 
   # Enable extra NixOS options, specifically the nix command and flakes.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  imports = with profiles; [ core.caddy ];
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -85,28 +87,61 @@
     # List of packages installed in the user environment
     # packages with pkgs and
     packages = with pkgs; [
+      # web
       firefox
       brave
+
+      # media  
       spotify
-      vscode
-      i3lock-fancy
       discord
+
+      i3lock-fancy
+
+      # dev
+      vscode
       docker-compose
       mysql80
+      go
+      bruno
+      gcc
+      gnumake
+
+      # tools
+      bat
+      glow
+      gnumake
+      tldr
+      fd
+      tmux
+      ripgrep
+
+      # cybersec
+      traceroute
+      openvpn
+      burp
+      nmap
+      wireshark
     ];
   };
 
   # List of packages installed in system profile.
   environment.systemPackages = with pkgs; [
+    # core
     vim
     wget
     curl
+
+    # mvn workaround
     steam-run
+
+    # nix
     nixfmt
     nixpkgs-fmt
+
+    # dev
     python3
     dconf
-    tldr
+    nodejs
   ];
 
   home-manager.users.pereira = { pkgs, ... }: {
@@ -119,6 +154,7 @@
       [
         # core
         core.git
+        core.gitui
 
         # shell
         shell.zsh
