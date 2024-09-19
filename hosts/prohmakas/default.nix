@@ -4,7 +4,12 @@
 
 { pkgs, profiles, inputs, ... }:
 
-{
+let
+  RNLCert = builtins.fetchurl {
+    url = "https://rnl.tecnico.ulisboa.pt/ca/cacert/cacert.pem";
+    sha256 = "1jiqx6s86hlmpp8k2172ki6b2ayhr1hyr5g2d5vzs41rnva8bl63";
+  };
+in {
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -34,6 +39,8 @@
     LC_TIME = "pt_PT.UTF-8";
   };
 
+  security.pki.certificateFiles = [ "${RNLCert}" ];
+
   # Enable extra NixOS options, specifically the nix command and flakes.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -55,6 +62,8 @@
   services.printing.enable = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "pereira" ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -90,23 +99,35 @@
       # web
       firefox
       brave
+      tor-browser-bundle-bin
 
       # media  
       spotify
       discord
+      audacity
 
+      # system and graphical
       i3lock-fancy
+      xfce.thunar
+      xfce.tumbler
+      arandr
+      zathura
 
       # dev
-      vscode
+      vscode-fhs
       docker-compose
       mysql80
       go
       bruno
       gcc
       gnumake
+      mdbook
+      valgrind
+      bun
+      dbeaver
 
       # tools
+      file
       bat
       glow
       gnumake
@@ -114,15 +135,37 @@
       fd
       tmux
       ripgrep
+      remmina
+      killall
+      htop
+      neofetch
+      netcat-gnu
+      unzip
+      lf
+      simplescreenrecorder
+      psmisc
 
       # cybersec
       traceroute
       openvpn
-      burp
+      inetutils
+      burpsuite
+      metasploit
+      exploitdb
+      gobuster
+      enum4linux
+      john
+      thc-hydra
       nmap
       wireshark
+      wpscan
+
+      # agisit
+      vagrant
+
     ];
   };
+  programs.nix-ld.enable = true;
 
   # List of packages installed in system profile.
   environment.systemPackages = with pkgs; [

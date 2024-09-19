@@ -7,7 +7,7 @@
     viAlias = true;
     vimAlias = true;
 
-    globals.mapleader = " ";
+    globals.mapleader = "'";
 
     plugins = {
       # junior software engineer
@@ -52,15 +52,15 @@
         enable = true;
 
         keymaps = {
-          "<leader>pf" = {
+          "<leader>f" = {
             action = "find_files";
             desc = "Findfiles";
           };
-          "<leader>ps" = {
+          "<leader>s" = {
             action = "live_grep";
             desc = "Fuzzy search";
           };
-          "<leader>pb" = {
+          "<leader>b" = {
             action = "buffers";
             desc = "List buffers";
           };
@@ -71,7 +71,7 @@
       toggleterm = {
         enable = true;
 
-        openMapping = "<leader>pt";
+        openMapping = "<leader>t";
         direction = "float";
         shell = "zsh";
       };
