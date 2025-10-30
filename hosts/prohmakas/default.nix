@@ -9,6 +9,9 @@ let
     url = "https://rnl.tecnico.ulisboa.pt/ca/cacert/cacert.pem";
     sha256 = "1jiqx6s86hlmpp8k2172ki6b2ayhr1hyr5g2d5vzs41rnva8bl63";
   };
+  gdk = pkgs.google-cloud-sdk.withExtraComponents( with pkgs.google-cloud-sdk.components; [
+    gke-gcloud-auth-plugin
+  ]);
 in {
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -49,11 +52,12 @@ in {
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "pt";
-    xkbVariant = "";
-    displayManager.defaultSession = "none+i3";
+    xkb.layout = "pt";
+    xkb.variant = "";
     windowManager.i3 = { enable = true; };
   };
+
+  services.displayManager.defaultSession = "none+i3";
 
   # Configure console keymap
   console.keyMap = "pt-latin1";
@@ -66,7 +70,6 @@ in {
   users.extraGroups.vboxusers.members = [ "pereira" ];
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -84,14 +87,35 @@ in {
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    permittedInsecurePackages = [ "openssl-1.1.1w" ];
+    permittedInsecurePackages = [ "openssl-1.1.1w" "electron-25.9.0" ];
+  };
+
+  systemd.user.services = {
+    "casaradar" = {
+      enable = true;
+      description = "Casa Radar docker-compose";
+      wantedBy = [ "multi-user.target" ];
+      
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f /home/pereira/repos/casaRadar/docker-compose.yml up -d --build";
+        ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f /home/pereira/repos/casaRadar/docker-compose.yml stop";
+        StandardOutput = "journal";
+        StandardError = "journal";
+    };
+
+    postStart = ''
+      ${pkgs.docker-compose}/bin/docker-compose -f /home/pereira/repos/casaRadar/docker-compose.yml logs -f &
+    '';
+  };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pereira = {
     isNormalUser = true;
     description = "pereira";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "wireshark"];
 
     # List of packages installed in the user environment
     # packages with pkgs and
@@ -124,7 +148,6 @@ in {
       mdbook
       valgrind
       bun
-      dbeaver
 
       # tools
       file
@@ -144,6 +167,7 @@ in {
       lf
       simplescreenrecorder
       psmisc
+      #obsidian
 
       # cybersec
       traceroute
@@ -162,6 +186,28 @@ in {
 
       # agisit
       vagrant
+      gdk
+
+      # productivity
+      obsidian
+
+      # misc
+      prismlauncher
+      mullvad-vpn
+      ts
+      dbeaver-bin
+
+      jdk8
+      jdk17
+      jdk21
+
+      # cpd
+      mpich
+      gdb
+
+      # cnv
+      awscli
+      
 
     ];
   };
@@ -178,13 +224,14 @@ in {
     steam-run
 
     # nix
-    nixfmt
+    nixfmt-classic
     nixpkgs-fmt
 
     # dev
-    python3
+    python313
     dconf
     nodejs
+    postgresql
   ];
 
   home-manager.users.pereira = { pkgs, ... }: {

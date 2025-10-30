@@ -15,7 +15,7 @@
       theme = "robbyrussell";
     };
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     autocd = true;
   };
 }

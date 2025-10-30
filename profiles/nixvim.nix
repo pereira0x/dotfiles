@@ -12,9 +12,12 @@
     plugins = {
       # junior software engineer
       copilot-vim = {
-        enable = true;
-        filetypes = { "*" = true; };
+        enable = false;
+        settings = {
+          filetypes = { "*" = true; };
+        };
       };
+      web-devicons.enable = true;
 
       # blame people by git
       gitblame = { enable = true; };
@@ -25,8 +28,9 @@
       # autocomplete pairs
       nvim-autopairs = {
         enable = true;
-
-        checkTs = true;
+        settings = {
+          checkTs = true;
+        };
       };
 
       # language server protocol
@@ -39,10 +43,9 @@
           cssls.enable = true; # CSS
           html.enable = true; # HTML
           jsonls.enable = true; # Json
-          lua-ls.enable = true; # Lua
+          lua_ls.enable = true; # Lua
           nil_ls.enable = true; # Nix
           pyright.enable = true; # Python
-          vuels.enable = true; # Vue
           yamlls.enable = true; # YAML
         };
       };
@@ -54,15 +57,12 @@
         keymaps = {
           "<leader>f" = {
             action = "find_files";
-            desc = "Findfiles";
           };
           "<leader>s" = {
             action = "live_grep";
-            desc = "Fuzzy search";
           };
           "<leader>b" = {
             action = "buffers";
-            desc = "List buffers";
           };
         };
       };
@@ -70,10 +70,11 @@
       # terminal
       toggleterm = {
         enable = true;
-
-        openMapping = "<leader>t";
-        direction = "float";
-        shell = "zsh";
+        settings = {
+          shell = "zsh";
+          direction = "float";
+          open_mapping = "[[<c-t>]]";
+        };
       };
 
       #  what key
